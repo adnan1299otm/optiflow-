@@ -1,0 +1,673 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   PROFESSIONAL COLOR SYSTEM
+   ============================================ */
+
+:root {
+  /* Brand Colors */
+  --color-cyan: #00d4ff;
+  --color-purple: #9d4edd;
+  --color-pink: #ff006e;
+  --color-green: #00ff88;
+  --color-red: #e63946;
+  
+  /* Backgrounds */
+  --bg-black: #000000;
+  --bg-navy-deep: #0a0e27;
+  --bg-navy: #1a1f2e;
+  --bg-charcoal: #2d3748;
+  
+  /* Glass Effects */
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-hover-bg: rgba(255, 255, 255, 0.08);
+
+  /* Gradients for compatibility with existing components */
+  --gradient-holographic: linear-gradient(135deg, #00d4ff, #9d4edd, #ff006e);
+  --gradient-red-accent: linear-gradient(90deg, #e63946, #ff006e);
+}
+
+body {
+  color: #ffffff;
+  background: var(--bg-black);
+}
+
+/* ============================================
+   RADIAL GRADIENT UTILITY
+   ============================================ */
+
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* ============================================
+   ENHANCED GLASSMORPHISM
+   ============================================ */
+
+.glass-card {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.37),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.04) 100%
+  );
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 12px 48px 0 rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* ============================================
+   ANIMATED GRADIENTS
+   ============================================ */
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* ============================================
+   SMOOTH TRANSITIONS
+   ============================================ */
+
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Professional hover lift effect */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   TEXT RENDERING QUALITY
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1;
+}
+
+/* Prevent text cutoff globally */
+h1, h2, h3, h4, h5, h6 {
+  overflow: visible !important;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Ensure logo text is always visible */
+nav h1,
+nav .logo,
+header h1,
+header .logo {
+  overflow: visible !important;
+  white-space: nowrap !important;
+}
+
+/* ============================================================
+   SPLINE WATERMARK — COMPLETE REMOVAL
+   ============================================================ */
+
+/* Target all known Spline watermark patterns */
+a[href*="spline.design"],
+a[href*="app.spline.design"],
+spline-viewer a,
+[class*="logo"][href*="spline"],
+[id*="watermark"],
+[class*="watermark"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -99999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Nuclear option: cover bottom-right corner of every Spline container */
+/* This is the physical location where Spline places its watermark */
+.spline-scene-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 220px;
+  height: 60px;
+  z-index: 9999;
+  pointer-events: none;
+  /* Match the section background to perfectly hide watermark */
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.95) 70%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Force all canvas elements to be transparent */
+canvas {
+  background: transparent !important;
+  display: block !important;
+}
+
+.spline-container canvas,
+.spline-scene-wrapper canvas,
+[class*="spline"] canvas {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* Remove any box/border from Spline iframes */
+iframe[src*="spline"],
+iframe[src*="my.spline"] {
+  border: none !important;
+  outline: none !important;
+}
+
+/* ============================================
+   PROFESSIONAL BUTTON STYLES
+   ============================================ */
+
+button, .btn {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: all 0.2s ease;
+}
+
+button:hover, .btn:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+/* Remove mobile tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* But allow text selection */
+p, span, a, h1, h2, h3, h4, h5, h6, li {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* ============================================
+   FOCUS STATES (ACCESSIBILITY)
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+/* ============================================
+   PAGE TRANSITIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-transition {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* ============================================
+   SCROLL ANIMATIONS
+   ============================================ */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+
+/* ============================================================
+   SPLINE INTEGRATION — PROFESSIONAL
+   ============================================================ */
+
+/* All Spline containers must be transparent */
+.spline-scene-wrapper,
+.spline-container,
+.spline-wrapper,
+[class*="spline"] {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Allow 3D to overflow its container naturally (no clipping) */
+.spline-scene-wrapper {
+  overflow: visible !important;
+  isolation: isolate;
+}
+
+/* Headings must never be truncated */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
+  overflow: visible;
+}
+
+/* Custom text selection */
+::selection {
+  background: rgba(0, 212, 255, 0.25);
+  color: white;
+}
+
+/* ============================================================
+   GRADIENT TEXT UTILITIES — USE THESE EVERYWHERE
+   ============================================================ */
+
+/* Primary holographic gradient — cyan → purple → pink */
+.text-gradient-holographic {
+  background-image: linear-gradient(135deg, #00d4ff 0%, #9d4edd 50%, #ff006e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+/* Red accent gradient */
+.text-gradient-red {
+  background-image: linear-gradient(90deg, #e63946 0%, #ff006e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+/* Cyan to blue */
+.text-gradient-cyan {
+  background-image: linear-gradient(90deg, #00d4ff 0%, #0066ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+/* White fading — for large headings */
+.text-gradient-white {
+  background-image: linear-gradient(180deg, #ffffff 0%, rgba(255,255,255,0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline;
+}
+
+/* Button ripple animation */
+@keyframes ripple-expand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(30);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-ring {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.3; }
+  100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.8; }
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes psychological-progress {
+  0% { width: 0%; }
+  60% { width: 85%; }
+  85% { width: 92%; }
+  100% { width: 92%; }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   OPTIFLOW PROFESSIONAL DESIGN SYSTEM
+   Based on Golden Ratio, Semantic Colors, and Premium UX Principles
+   ============================================ */
+
+/* Typography Golden Ratio Scale */
+:root {
+  --type-caption: 0.625rem;     /* 10px */
+  --type-small: 0.875rem;       /* 14px */
+  --type-body: 1rem;            /* 16px - BASE */
+  --type-subheading: 1.625rem;  /* 26px = 16 × 1.618 */
+  --type-heading: 2.625rem;     /* 42px = 26 × 1.618 */
+  --type-display: 4.25rem;      /* 68px = 42 × 1.618 */
+  --type-hero: 6.875rem;        /* 110px = 68 × 1.618 */
+
+  /* Purpose-based colors */
+  --color-background: #000000;
+  --color-surface: #0a0e27;
+  --color-surface-elevated: #1a1f2e;
+  
+  /* Brand colors with 9-shade scale */
+  --color-brand-50: #e6f7ff;
+  --color-brand-100: #b3e5ff;
+  --color-brand-200: #80d4ff;
+  --color-brand-300: #4dc2ff;
+  --color-brand-400: #1ab0ff;
+  --color-brand-500: #00d4ff; /* Primary */
+  --color-brand-600: #00a8cc;
+  --color-brand-700: #007d99;
+  --color-brand-800: #005366;
+  --color-brand-900: #002833;
+  
+  /* Accent colors - 9-shade scale */
+  --color-accent-purple-500: #9d4edd;
+  --color-accent-pink-500: #ff006e;
+  --color-accent-green-500: #00ff88;
+  --color-accent-red-500: #e63946;
+  
+  /* Semantic states */
+  --color-success: #00ff88;
+  --color-error: #e63946;
+  --color-warning: #ffd23f;
+  --color-info: #00d4ff;
+  
+  /* Text hierarchy */
+  --text-primary: rgba(255, 255, 255, 1);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-tertiary: rgba(255, 255, 255, 0.6);
+  --text-disabled: rgba(255, 255, 255, 0.4);
+}
+
+/* Premium Gradients (135° angle) */
+.gradient-premium {
+  background: linear-gradient(135deg, var(--tw-gradient-stops));
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-card:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Spring scale animation */
+@keyframes spring-scale {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.spring-entrance { animation: spring-scale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+
+/* Glow on hover */
+.glow-on-hover { position: relative; }
+.glow-on-hover::before {
+  content: ''; position: absolute; inset: -2px;
+  background: linear-gradient(135deg, #00d4ff, #9d4edd);
+  border-radius: inherit; opacity: 0; filter: blur(10px);
+  transition: opacity 0.3s; z-index: -1;
+}
+.glow-on-hover:hover::before { opacity: 0.7; }
+
+/* ============================================================
+   MOBILE PERFORMANCE — CSS-ONLY ANIMATIONS (No 3D/WebGL)
+   Replaces heavy Spline scenes on mobile with smooth CSS
+   ============================================================ */
+
+/* On mobile, hide Spline containers entirely */
+@media (max-width: 767px) {
+  .spline-scene-wrapper,
+  .spline-container {
+    display: none !important;
+  }
+}
+
+/* ── Floating orb animation ────────────────────────────────── */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  33%       { transform: translateY(-18px) scale(1.04); }
+  66%       { transform: translateY(-8px) scale(0.97); }
+}
+
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-12px) rotate(180deg); }
+}
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  25%       { transform: translate(30px, -20px) scale(1.08); opacity: 0.9; }
+  50%       { transform: translate(10px, -35px) scale(0.95); opacity: 0.7; }
+  75%       { transform: translate(-20px, -15px) scale(1.05); opacity: 0.85; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.15); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes particle-drift {
+  0%   { transform: translate(0, 0) scale(0); opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 0.6; }
+  100% { transform: translate(var(--dx, 40px), var(--dy, -60px)) scale(1.2); opacity: 0; }
+}
+
+/* ── Mobile hero placeholder ───────────────────────────────── */
+/* 
+   Usage: Add class "mobile-3d-placeholder" to any div that 
+   wraps a SplineScene on mobile. It auto-shows the CSS animation.
+   The SplineScene itself is hidden via the rule above.
+*/
+.mobile-hero-bg {
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Animated gradient orbs — visible only on mobile */
+@media (max-width: 767px) {
+  .mobile-hero-bg::before {
+    content: '';
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.18) 0%, rgba(157, 78, 221, 0.10) 50%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: glow-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .mobile-hero-bg::after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 0, 110, 0.12) 0%, transparent 70%);
+    top: 30%;
+    left: 60%;
+    animation: drift 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
+
+/* ── Reduce motion for accessibility ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── GPU acceleration for animated elements ───────────────── */
+@media (max-width: 767px) {
+  .animate-fade-in-up,
+  .spring-entrance,
+  [class*="animate-"] {
+    will-change: transform, opacity;
+    transform: translateZ(0); /* Force GPU layer */
+  }
+}
+
+/* ── Smooth scrolling on iOS ───────────────────────────────── */
+@media (max-width: 767px) {
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Disable expensive filters on mobile */
+  .glass-card {
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+  }
+}
+
+/* ============================================================
+   SPLINE WATERMARK — COMPLETE REMOVAL
+   ============================================================ */
+a[href*="spline.design"],
+a[href*="app.spline.design"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -99999px !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Nuclear: cover bottom-right corner of every Spline wrapper */
+.spline-scene-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 240px;
+  height: 64px;
+  pointer-events: none;
+  z-index: 9999;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.96) 60%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+/* Transparent canvas — removes grey box */
+canvas {
+  background: transparent !important;
+  display: block !important;
+}
