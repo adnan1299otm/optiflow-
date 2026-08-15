@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OptiFlow
+
+OptiFlow is a modern web platform focused on AI-powered solutions, business automation, and practical digital tools.
+
+The project is built as a full-stack Next.js application with reusable UI components, interactive experiences, forms, analytics, and portfolio-focused sections.
+
+> This repository is the public showcase version of the project. The main development repository remains private while the project is still being developed.
+
+## Highlights
+
+- AI-powered application concepts and LLM integrations
+- Business workflow automation
+- Responsive, modern web interface
+- Reusable React and UI components
+- Interactive 3D-ready component architecture
+- Form handling and validation
+- Analytics and portfolio sections
+- Production-oriented Next.js structure
+
+## Tech Stack
+
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- React Hook Form
+- Zod
+- Lucide React
+- Google APIs
+- Spline integration support
+
+## Project Structure
+
+```text
+src/
+├── app/            # Next.js application routes and pages
+├── components/     # Reusable UI and feature components
+│   ├── 3d/
+│   ├── analytics/
+│   ├── faq/
+│   ├── forms/
+│   ├── home/
+│   ├── layout/
+│   ├── portfolio/
+│   └── ui/
+└── lib/            # Shared utilities and application logic
+```
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/adnan1299otm/optiflow-.git
+cd optiflow-
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure local environment variables
+
+Create a `.env.local` file on your machine and add the environment values required by your local setup.
+
+Do not commit `.env.local` or any private credentials to the repository.
+
+### 4. Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build
+npm run start    # Start the production server
+npm run lint     # Run linting
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The application is designed for deployment on Vercel or another Next.js-compatible platform.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Status
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+OptiFlow is an active project and is still evolving. Features, UI details, and integrations may continue to change as development progresses.
 
-## Deploy on Vercel
+## Author
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Arafath Al Adnan**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+AI Automation Engineer · Full-Stack Developer · Python Developer
+
+- GitHub: https://github.com/adnan1299otm
+- Portfolio: https://www.arafath-al-adnan.work.gd/
+- LinkedIn: https://www.linkedin.com/in/arafathaladnan/
